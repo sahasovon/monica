@@ -8,9 +8,13 @@ if [ "$GITHUB_TOKEN" == "\$(GITHUB_TOKEN)" ]; then
     echo -e "\033[0;36mFix GITHUB_TOKEN\033[0;37m"
     export GITHUB_TOKEN=
 fi
-if [ "$GH_TOKEN" == "\$(GH_TOKEN)" ]; then
-    echo -e "\033[0;36mFix GH_TOKEN\033[0;37m"
-    export GH_TOKEN=
+if [ "$ASSETS_USERNAME" == "\$(ASSETS_USERNAME)" ]; then
+    echo -e "\033[0;36mFix ASSETS_USERNAME\033[0;37m"
+    export ASSETS_USERNAME=
+fi
+if [ "$ASSETS_EMAIL" == "\$(ASSETS_EMAIL)" ]; then
+    echo -e "\033[0;36mFix ASSETS_EMAIL\033[0;37m"
+    export ASSETS_EMAIL=
 fi
 if [ "$ASSETS_GITHUB_TOKEN" == "\$(ASSETS_GITHUB_TOKEN)" ]; then
     echo -e "\033[0;36mFix ASSETS_GITHUB_TOKEN\033[0;37m"
@@ -19,4 +23,8 @@ fi
 if [ "$STRIPE_SECRET" == "\$(STRIPE_SECRET)" ]; then
     echo -e "\033[0;36mFix STRIPE_SECRET\033[0;37m"
     export STRIPE_SECRET=
+fi
+if [ "$CYPRESS_RECORD_KEY" == "\$(CYPRESS_RECORD_KEY)" ]; then
+    echo -e "\033[0;36mFix CYPRESS_RECORD_KEY\033[0;37m"
+    export CYPRESS_RECORD_KEY=
 fi

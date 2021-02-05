@@ -9,11 +9,11 @@ use App\Services\BaseService;
 use App\Models\Account\Account;
 use App\Models\Contact\Document;
 use Illuminate\Support\Facades\DB;
-use App\Exceptions\NoAccountException;
 use Illuminate\Support\Facades\Storage;
 
 class ExportAccount extends BaseService
 {
+    /** @var string */
     protected $tempFileName;
 
     /**
@@ -35,7 +35,7 @@ class ExportAccount extends BaseService
      * @param array $data
      * @return string
      */
-    public function execute(array $data) : string
+    public function execute(array $data): string
     {
         $this->validate($data);
 
@@ -101,7 +101,6 @@ SET FOREIGN_KEY_CHECKS=0;
         $this->exportMetaDataLoveRelationship($data);
         $this->exportModule($data);
         $this->exportNote($data);
-        $this->exportNotification($data);
         $this->exportOccupation($data);
         $this->exportPet($data);
         $this->exportPhoto($data);
@@ -121,6 +120,7 @@ SET FOREIGN_KEY_CHECKS=0;
         $this->exportUser($data);
         $this->exportWeather($data);
         $this->exportContactPhoto($data);
+        $this->exportAuditLogs($data);
 
         $sql = 'SET FOREIGN_KEY_CHECKS=1;';
         $this->writeToTempFile($sql);
@@ -141,10 +141,6 @@ SET FOREIGN_KEY_CHECKS=0;
             ->select($columns)
             ->where($foreignKey, $data['account_id'])
             ->get();
-
-        if (! $accountData) {
-            throw new NoAccountException();
-        }
 
         if ($accountData->count() == 0) {
             return;
@@ -189,7 +185,7 @@ SET FOREIGN_KEY_CHECKS=0;
     private function writeToTempFile(string $sql)
     {
         Storage::disk('local')
-            ->append($this->tempFileName, $sql, '');
+            ->append($this->tempFileName, $sql);
     }
 
     /**
@@ -223,7 +219,7 @@ SET FOREIGN_KEY_CHECKS=0;
             'activity_type_id',
             'summary',
             'description',
-            'date_it_happened',
+            'happened_at',
             'created_at',
             'updated_at',
         ];
@@ -567,6 +563,7 @@ SET FOREIGN_KEY_CHECKS=0;
             'in_debt',
             'status',
             'amount',
+            'currency_id',
             'reason',
             'created_at',
             'updated_at',
@@ -677,16 +674,13 @@ SET FOREIGN_KEY_CHECKS=0;
             'id',
             'account_id',
             'contact_id',
-            'is_for',
             'name',
             'comment',
             'url',
-            'value',
-            'is_an_idea',
-            'has_been_offered',
-            'has_been_received',
-            'offered_at',
-            'received_at',
+            'amount',
+            'currency_id',
+            'status',
+            'date',
             'created_at',
             'updated_at',
         ];
@@ -908,31 +902,6 @@ SET FOREIGN_KEY_CHECKS=0;
         $foreignKey = 'account_id';
 
         $this->buildInsertSQLQuery('notes', $foreignKey, $columns, $data);
-    }
-
-    /**
-     * Export the Notification table.
-     *
-     * @param array $data
-     */
-    private function exportNotification(array $data)
-    {
-        $columns = [
-            'id',
-            'account_id',
-            'contact_id',
-            'reminder_id',
-            'delete_after_number_of_emails_sent',
-            'number_of_emails_sent',
-            'trigger_date',
-            'scheduled_number_days_before',
-            'created_at',
-            'updated_at',
-        ];
-
-        $foreignKey = 'account_id';
-
-        $this->buildInsertSQLQuery('notifications', $foreignKey, $columns, $data);
     }
 
     /**
@@ -1389,10 +1358,6 @@ SET FOREIGN_KEY_CHECKS=0;
             ->where('account_id', $data['account_id'])
             ->get();
 
-        if (! $contacts) {
-            throw new NoAccountException();
-        }
-
         if ($contacts->count() == 0) {
             return;
         }
@@ -1410,5 +1375,31 @@ SET FOREIGN_KEY_CHECKS=0;
         }
         $sql .= implode(','.PHP_EOL, $insertValues);
         $this->writeToTempFile($sql.';'.PHP_EOL);
+    }
+
+    /**
+     * Export the Audit logs table.
+     *
+     * @param array $data
+     */
+    private function exportAuditLogs(array $data)
+    {
+        $columns = [
+            'id',
+            'account_id',
+            'author_id',
+            'about_contact_id',
+            'author_name',
+            'action',
+            'objects',
+            'should_appear_on_dashboard',
+            'audited_at',
+            'created_at',
+            'updated_at',
+        ];
+
+        $foreignKey = 'account_id';
+
+        $this->buildInsertSQLQuery('audit_logs', $foreignKey, $columns, $data);
     }
 }

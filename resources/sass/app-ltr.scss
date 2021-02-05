@@ -234,6 +234,9 @@ kbd {
 // Generic styles
 body {
   color: #4a4a4a;
+  @if $htmldir == rtl {
+    text-align: right;
+  }
 }
 
 a {
@@ -270,6 +273,29 @@ ul {
   &.horizontal {
     li {
       display: inline;
+    }
+  }
+}
+
+.pretty {
+  white-space: inherit;
+  &.form-check-input {
+    @if $htmldir == ltr {
+      margin-left: 0;
+    } @else {
+      margin-right: 0;
+    }
+  }
+  .state label{
+    text-indent: 0;
+    @if $htmldir == ltr {
+      padding-left: 2rem;
+    } @else {
+      padding-right: 2rem;
+    }
+    line-height: 1.4em;
+    &:after, &:before {
+      top: 0;
     }
   }
 }
@@ -593,4 +619,33 @@ footer {
 // Fix svg alignment
 svg {
   vertical-align: baseline !important;
+}
+
+// Input error handle
+.form-group-error {
+  animation-name: shake;
+  animation-fill-mode: forwards;
+  animation-duration: .6s;
+  animation-timing-function: ease-in-out;
+  z-index: 99;
+}
+
+.form-group-error .error {
+  border-color: #f79483 !important;
+  color:#f57f6c;
+}
+
+// Shake animation
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  15%, 45%, 75% {
+    transform: translateX(0.375rem);
+  }
+
+  30%, 60%, 90% {
+    transform: translateX(-0.375rem);
+  }
 }

@@ -31,10 +31,11 @@ class UpdateLifeEvent extends BaseService
      * @param array $data
      * @return LifeEvent
      */
-    public function execute(array $data) : LifeEvent
+    public function execute(array $data): LifeEvent
     {
         $this->validate($data);
 
+        /** @var LifeEvent */
         $lifeEvent = LifeEvent::where('account_id', $data['account_id'])
             ->findOrFail($data['life_event_id']);
 

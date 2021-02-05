@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
     'yes' => 'Ja',
     'no' => 'Nej',
@@ -7,6 +13,7 @@ return [
     'save' => 'Gem',
     'add' => 'Tilføj',
     'cancel' => 'Annullér',
+    'confirm' => 'Confirm',
     'delete_confirm' => 'Sikker?',
     'delete' => 'Slet',
     'edit' => 'Redigér',
@@ -21,13 +28,11 @@ return [
     'done' => 'Udført',
     'back' => 'Tilbage',
     'verify' => 'Bekræft',
-    'for' => 'for',
     'new' => 'ny',
     'unknown' => 'I don’t know',
     'load_more' => 'Indlæs flere',
     'loading' => 'Indlæser...',
     'with' => 'with',
-    'days' => 'dag|dage',
     'today' => 'i dag',
     'yesterday' => 'i går',
     'another_day' => 'another day',
@@ -37,7 +42,9 @@ return [
     'upgrade' => 'Opgradér for at låse op',
     'percent_uploaded' => '{percent}% uploaded',
     'retry' => 'Prøv igen',
+    'filter' => 'Filter the list',
     'go_back' => 'Gå tilbage',
+    'file_selected' => '1 file selected...|{count} files selected...',
 
     'application_title' => 'Monica – personal relationship manager',
     'application_description' => 'Monica is a tool to manage your interactions with your loved ones, friends and family.',
@@ -89,25 +96,27 @@ return [
     'breadcrumb_api' => 'API',
     'breadcrumb_dav' => 'DAV Resources',
     'breadcrumb_edit_introductions' => 'How did you meet',
-    'breadcrumb_settings_personalization' => 'Personalization',
-    'breadcrumb_settings_security' => 'Security',
+    'breadcrumb_settings_personalization' => 'Tilpasning',
+    'breadcrumb_settings_security' => 'Sikkerhed',
     'breadcrumb_settings_security_2fa' => 'Two Factor Authentication',
     'breadcrumb_profile' => 'Profile of :name',
 
-    'gender_male' => 'Man',
-    'gender_female' => 'Woman',
+    'gender_male' => 'Mand',
+    'gender_female' => 'Kvinde',
     'gender_none' => 'Rather not say',
     'gender_no_gender' => 'No gender',
 
-    'error_title' => 'Whoops! Something went wrong.',
+    'error_title' => 'Hovsa! Noget gik galt.',
     'error_unauthorized' => 'You don’t have the right to edit this resource.',
+    'error_user_account' => 'This user does not belong to the given account.',
     'error_save' => 'We had an error trying to save the data.',
     'error_try_again' => 'Something went wrong. Please try again.',
     'error_id' => 'Error ID: :id',
     'error_unavailable' => 'Tjenesten er ikke tilgængelig',
     'error_maintenance' => 'Maintenance in progress. Be right back.',
-    'error_help' => 'We’ll be right back.',
+    'error_help' => 'Vi er snart tilbage.',
     'error_twitter' => 'Follow <a href="https://twitter.com/:twitter">our Twitter account</a> to be alerted when it’s up again.',
+    'error_no_term' => 'There is no policy for this instance yet.',
 
     'default_save_success' => 'The data has been saved.',
 
@@ -169,23 +178,23 @@ return [
     'relationship_type_parent_with_name' => ':name’s far',
     'relationship_type_parent_female_with_name' => ':name’s mor',
 
-    'relationship_type_child' => 'son',
-    'relationship_type_child_female' => 'daughter',
+    'relationship_type_child' => 'søn',
+    'relationship_type_child_female' => 'datter',
     'relationship_type_child_with_name' => ':name’s son',
     'relationship_type_child_female_with_name' => ':name’s daughter',
 
-    'relationship_type_stepparent' => 'stepfather',
-    'relationship_type_stepparent_female' => 'stepmother',
+    'relationship_type_stepparent' => 'stedfar',
+    'relationship_type_stepparent_female' => 'stedmor',
     'relationship_type_stepparent_with_name' => ':name’s stepfather',
     'relationship_type_stepparent_female_with_name' => ':name’s stepmother',
 
-    'relationship_type_stepchild' => 'stepson',
-    'relationship_type_stepchild_female' => 'stepdaughter',
+    'relationship_type_stepchild' => 'stedsøn',
+    'relationship_type_stepchild_female' => 'steddatter',
     'relationship_type_stepchild_with_name' => ':name’s stepson',
     'relationship_type_stepchild_female_with_name' => ':name’s stepdaughter',
 
-    'relationship_type_sibling' => 'brother',
-    'relationship_type_sibling_female' => 'sister',
+    'relationship_type_sibling' => 'bror',
+    'relationship_type_sibling_female' => 'søster',
     'relationship_type_sibling_with_name' => ':name’s brother',
     'relationship_type_sibling_female_with_name' => ':name’s sister',
 

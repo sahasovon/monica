@@ -30,13 +30,14 @@ class UpdateActivityType extends BaseService
      * @param array $data
      * @return ActivityType
      */
-    public function execute(array $data) : ActivityType
+    public function execute(array $data): ActivityType
     {
         $this->validate($data);
 
         ActivityTypeCategory::where('account_id', $data['account_id'])
             ->findOrFail($data['activity_type_category_id']);
 
+        /** @var ActivityType */
         $activityType = ActivityType::where('account_id', $data['account_id'])
             ->findOrFail($data['activity_type_id']);
 

@@ -16,8 +16,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 /**
+ * @property int $id
  * @property Account $account
+ * @property int $account_id
  * @property User $user
+ * @property int $user_id
+ * @property bool $failed
+ * @property string $failed_reason
+ * @property string $filename
+ * @property int $contacts_found
+ * @property int $contacts_skipped
+ * @property int $contacts_imported
+ * @property \Illuminate\Support\Carbon|null $started_at
+ * @property \Illuminate\Support\Carbon|null $ended_at
  */
 class ImportJob extends Model
 {
@@ -28,11 +39,15 @@ class ImportJob extends Model
 
     /**
      * The physical vCard file on disk.
+     *
+     * @var resource
      */
     public $physicalFile;
 
     /**
      * All individual entries in the vCard file.
+     *
+     * @var VCardReader
      */
     public $entries;
 
@@ -146,7 +161,7 @@ class ImportJob extends Model
     private function getPhysicalFile()
     {
         try {
-            $this->physicalFile = Storage::disk('public')->get($this->filename);
+            $this->physicalFile = Storage::disk('public')->readStream($this->filename);
         } catch (FileNotFoundException $exception) {
             $this->fail(trans('settings.import_vcard_file_not_found'));
         }
@@ -186,6 +201,7 @@ class ImportJob extends Model
     {
         while (true) {
             try {
+                /** @var VCard|null */
                 $entry = $this->entries->getNext();
                 if (! $entry) {
                     // file end

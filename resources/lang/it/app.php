@@ -1,14 +1,21 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
     'yes' => 'Sì',
     'no' => 'No',
     'update' => 'Aggiorna',
     'save' => 'Salva',
     'add' => 'Aggiungi',
-    'cancel' => 'Cancella',
+    'cancel' => 'Annulla',
+    'confirm' => 'Conferma',
     'delete_confirm' => 'Sei sicuro?',
-    'delete' => 'Rimuovi',
+    'delete' => 'Elimina',
     'edit' => 'Modifica',
     'upload' => 'Carica',
     'download' => 'Scarica',
@@ -21,13 +28,11 @@ return [
     'done' => 'Fatto',
     'back' => 'Indietro',
     'verify' => 'Verifica',
-    'for' => 'per',
     'new' => 'nuovo',
     'unknown' => 'Non so',
     'load_more' => 'Carica altro',
     'loading' => 'Caricamento in corso...',
     'with' => 'con',
-    'days' => 'giorno | giorni',
     'today' => 'oggi',
     'yesterday' => 'ieri',
     'another_day' => 'un altro giorno',
@@ -37,7 +42,9 @@ return [
     'upgrade' => 'Effettua l\'upgrade per sbloccare',
     'percent_uploaded' => '{percent}% caricato',
     'retry' => 'Riprova',
+    'filter' => 'Filtra la lista',
     'go_back' => 'Torna indietro',
+    'file_selected' => '1 file selezionato...|{count} files selezionati...',
 
     'application_title' => 'Monica – personal relationship manager',
     'application_description' => 'Monica è uno strumento per gestire le interazioni con i vostri cari, amici e familiari.',
@@ -101,6 +108,7 @@ return [
 
     'error_title' => 'Ops! Qualcosa è andato storto.',
     'error_unauthorized' => 'Non hai il permesso di aggiornare questa risorsa.',
+    'error_user_account' => 'Questo utente non appartiene all\'account corrente.',
     'error_save' => 'Abbiamo avuto un errore cercando di salvare i dati.',
     'error_try_again' => 'Qualcosa è andato storto. Riprova.',
     'error_id' => 'ID errore: :id',
@@ -108,6 +116,7 @@ return [
     'error_maintenance' => 'Manutenzione in corso. Torneremo presto.',
     'error_help' => 'Torneremo presto.',
     'error_twitter' => 'Seguici sul <a href="https://twitter.com/:twitter">nostro account Twitter</a> per venire notificato quando saremo di nuovo online.',
+    'error_no_term' => 'Non ci sono ancora regole per questa istanza.',
 
     'default_save_success' => 'I dati sono stati salvati.',
 

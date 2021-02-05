@@ -64,11 +64,12 @@ class ApiCompanyController extends ApiController
     {
         try {
             $company = app(CreateCompany::class)->execute(
-                $request->all()
+                $request->except(['account_id'])
                     +
                     [
-                    'account_id' => auth()->user()->account->id,
-                ]
+                        'account_id' => auth()->user()->account_id,
+                        'author_id' => auth()->user()->id,
+                    ]
             );
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound();
@@ -93,12 +94,12 @@ class ApiCompanyController extends ApiController
     {
         try {
             $company = app(UpdateCompany::class)->execute(
-                $request->all()
+                $request->except(['account_id', 'company_id'])
                     +
                     [
-                    'account_id' => auth()->user()->account->id,
-                    'company_id' => $companyId,
-                ]
+                        'account_id' => auth()->user()->account_id,
+                        'company_id' => $companyId,
+                    ]
             );
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound();
@@ -118,11 +119,11 @@ class ApiCompanyController extends ApiController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Request $request, $companyId)
+    public function destroy(Request $request, int $companyId)
     {
         try {
             app(DestroyCompany::class)->execute([
-                'account_id' => auth()->user()->account->id,
+                'account_id' => auth()->user()->account_id,
                 'company_id' => $companyId,
             ]);
         } catch (ModelNotFoundException $e) {
@@ -133,6 +134,6 @@ class ApiCompanyController extends ApiController
             return $this->respondInvalidQuery();
         }
 
-        return $this->respondObjectDeleted((int) $companyId);
+        return $this->respondObjectDeleted($companyId);
     }
 }

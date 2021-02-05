@@ -1,9 +1,15 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
 
-    'subject_line' => 'Reminder for :contact',
-    'greetings' => 'Hi :username',
+    'subject_line' => 'Recordatorio para :contact',
+    'greetings' => 'Hola, :username',
     'want_reminded_of' => 'You wanted to be reminded of :reason',
     'for' => 'Para: :name',
     'comment' => 'Comment: :comment',

@@ -9,6 +9,7 @@ use App\Models\Account\Photo;
 use App\Services\BaseService;
 use function Safe\finfo_open;
 use function Safe\preg_match;
+use App\Models\Contact\Contact;
 use function Safe\base64_decode;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -33,6 +34,7 @@ class UploadPhoto extends BaseService
     {
         return [
             'account_id' => 'required|integer|exists:accounts,id',
+            'contact_id' => 'required|integer|exists:contacts,id',
             'photo' => 'required_without:data|file|image',
             'data' => 'required_without:photo|string|photo',
             'extension' => 'nullable|string',
@@ -43,11 +45,14 @@ class UploadPhoto extends BaseService
      * Upload a photo.
      *
      * @param array $data
-     * @return Photo
+     * @return Photo|null
      */
-    public function execute(array $data)
+    public function execute(array $data): ?Photo
     {
         $this->validate($data);
+
+        $contact = Contact::where('account_id', $data['account_id'])
+            ->findOrFail($data['contact_id']);
 
         $array = null;
         if (Arr::has($data, 'photo')) {
@@ -57,10 +62,12 @@ class UploadPhoto extends BaseService
         }
 
         if (! $array) {
-            return;
+            return null;
         }
 
-        return Photo::create($array);
+        return tap(Photo::create($array), function ($photo) use ($contact): void {
+            $contact->photos()->syncWithoutDetaching([$photo->id]);
+        });
     }
 
     /**
@@ -68,33 +75,32 @@ class UploadPhoto extends BaseService
      *
      * @return array
      */
-    private function importPhoto($data)
+    private function importPhoto($data): array
     {
         $photo = $data['photo'];
-        $array = [
+
+        return [
             'account_id' => $data['account_id'],
             'original_filename' => $photo->getClientOriginalName(),
-            'filesize' => $photo->getClientSize(),
+            'filesize' => $photo->getSize(),
             'mime_type' => (new \Mimey\MimeTypes)->getMimeType($photo->guessClientExtension()),
+            'new_filename' => $photo->storePublicly('photos', config('filesystems.default')),
         ];
-        $array['new_filename'] = $photo->storePublicly('photos', config('filesystems.default'));
-
-        return $array;
     }
 
     /**
      * Upload the photo.
      *
-     * @return array
+     * @return array|null
      */
-    private function importFile(array $data)
+    private function importFile(array $data): ?array
     {
         $filename = Str::random(40);
 
         try {
             $image = Image::make($data['data']);
         } catch (NotReadableException $e) {
-            return;
+            return null;
         }
 
         $tempfile = $this->storeImage('local', $image, 'temp/'.$filename);
@@ -137,7 +143,7 @@ class UploadPhoto extends BaseService
      * @param string $filename
      * @return string|null
      */
-    private function storeImage(string $disk, $image, string $filename) : ? string
+    private function storeImage(string $disk, $image, string $filename): ?string
     {
         $result = Storage::disk($disk)
             ->put($path = $filename, (string) $image->stream(), 'public');
@@ -151,7 +157,7 @@ class UploadPhoto extends BaseService
      * @param string $data
      * @return bool
      */
-    private function isValidPhoto(string $data) : bool
+    private function isValidPhoto(string $data): bool
     {
         return $this->isBinary($data) || $this->isDataUrl($data) || $this->isBase64($data);
     }
@@ -162,15 +168,11 @@ class UploadPhoto extends BaseService
      * @param string $data
      * @return bool
      */
-    private function isBinary(string $data) : bool
+    private function isBinary(string $data): bool
     {
-        if (is_string($data)) {
-            $mime = finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $data);
+        $mime = finfo_buffer(finfo_open(FILEINFO_MIME_TYPE), $data);
 
-            return substr($mime, 0, 4) != 'text' && $mime != 'application/x-empty';
-        }
-
-        return false;
+        return substr($mime, 0, 4) != 'text' && $mime != 'application/x-empty';
     }
 
     /**
@@ -179,7 +181,7 @@ class UploadPhoto extends BaseService
      * @param string $data
      * @return bool
      */
-    private function isDataUrl(string $data) : bool
+    private function isDataUrl(string $data): bool
     {
         if (! is_string($data)) {
             return false;
@@ -201,7 +203,7 @@ class UploadPhoto extends BaseService
      * @param string $data
      * @return bool
      */
-    private function isBase64(string $data) : bool
+    private function isBase64(string $data): bool
     {
         if (! is_string($data)) {
             return false;

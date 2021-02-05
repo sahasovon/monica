@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\DAV\Backend\CalDAV;
 
 use Sabre\DAV;
-use App\Models\User\SyncToken;
 use Sabre\CalDAV\Backend\SyncSupport;
 use Sabre\CalDAV\Backend\AbstractBackend;
 
@@ -126,8 +125,10 @@ class CalDAVBackend extends AbstractBackend implements SyncSupport
     {
         $backend = $this->getBackend($calendarId);
         if ($backend) {
-            return $backend->getChanges($syncToken);
+            return $backend->getChanges($calendarId, $syncToken);
         }
+
+        return [];
     }
 
     /**
@@ -165,7 +166,7 @@ class CalDAVBackend extends AbstractBackend implements SyncSupport
     {
         $backend = $this->getBackend($calendarId);
         if ($backend) {
-            $objs = $backend->getObjects();
+            $objs = $backend->getObjects($calendarId);
 
             return $objs
                 ->map(function ($date) use ($backend) {
@@ -176,6 +177,8 @@ class CalDAVBackend extends AbstractBackend implements SyncSupport
                 })
                 ->toArray();
         }
+
+        return [];
     }
 
     /**
@@ -198,12 +201,14 @@ class CalDAVBackend extends AbstractBackend implements SyncSupport
     {
         $backend = $this->getBackend($calendarId);
         if ($backend) {
-            $obj = $backend->getObject($objectUri);
+            $obj = $backend->getObject($calendarId, $objectUri);
 
             if ($obj) {
                 return $backend->prepareData($obj);
             }
         }
+
+        return [];
     }
 
     /**
@@ -247,12 +252,13 @@ class CalDAVBackend extends AbstractBackend implements SyncSupport
      * @param string $calendarData
      * @return string|null
      */
-    public function updateCalendarObject($calendarId, $objectUri, $calendarData)
+    public function updateCalendarObject($calendarId, $objectUri, $calendarData): ?string
     {
         $backend = $this->getBackend($calendarId);
-        if ($backend) {
-            return $backend->updateOrCreateCalendarObject($objectUri, $calendarData);
-        }
+
+        return $backend ?
+            $backend->updateOrCreateCalendarObject($calendarId, $objectUri, $calendarData)
+            : null;
     }
 
     /**

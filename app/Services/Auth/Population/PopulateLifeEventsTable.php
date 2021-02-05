@@ -43,7 +43,7 @@ class PopulateLifeEventsTable extends BaseService
      * @param array $givenData
      * @return bool
      */
-    public function execute(array $givenData) : bool
+    public function execute(array $givenData): bool
     {
         $this->data = $givenData;
 
@@ -128,14 +128,12 @@ class PopulateLifeEventsTable extends BaseService
      */
     private function feedLifeEventCategory($defaultLifeEventCategory): LifeEventCategory
     {
-        $lifeEventCategory = LifeEventCategory::create([
+        return LifeEventCategory::create([
             'account_id' => $this->data['account_id'],
             'name' => trans('settings.personalization_life_event_category_'.$defaultLifeEventCategory->translation_key),
             'core_monica_data' => true,
             'default_life_event_category_key' => $defaultLifeEventCategory->translation_key,
         ]);
-
-        return $lifeEventCategory;
     }
 
     /**
@@ -149,7 +147,6 @@ class PopulateLifeEventsTable extends BaseService
         LifeEventType::create([
             'account_id' => $this->data['account_id'],
             'life_event_category_id' => $lifeEventCategory->id,
-            'name' => trans('settings.personalization_life_event_type_'.$defaultLifeEventType->translation_key),
             'core_monica_data' => true,
             'specific_information_structure' => $defaultLifeEventType->specific_information_structure,
             'default_life_event_type_key' => $defaultLifeEventType->translation_key,

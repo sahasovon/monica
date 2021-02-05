@@ -31,10 +31,11 @@ class UpdateCall extends BaseService
      * @param array $data
      * @return Call
      */
-    public function execute(array $data) : Call
+    public function execute(array $data): Call
     {
         $this->validate($data);
 
+        /** @var Call */
         $call = Call::where('account_id', $data['account_id'])
             ->findOrFail($data['call_id']);
 
@@ -86,12 +87,14 @@ class UpdateCall extends BaseService
      */
     private function updateLastCallInfo(Call $call)
     {
-        if (is_null($call->contact->last_talked_to)) {
-            $call->contact->last_talked_to = $call->called_at;
+        /** @var \App\Models\Contact\Contact */
+        $contact = $call->contact;
+        if (is_null($contact->last_talked_to)) {
+            $contact->last_talked_to = $call->called_at;
         } else {
-            $call->contact->last_talked_to = $call->contact->last_talked_to->max($call->called_at);
+            $contact->last_talked_to = $contact->last_talked_to->max($call->called_at);
         }
 
-        $call->contact->save();
+        $contact->save();
     }
 }

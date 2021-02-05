@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
     'journal_rate' => 'Comment s’est passé votre journée ? Vous pouvez voter une fois par jour.',
     'journal_come_back' => 'Merci. Revenez demain pour voter à nouveau.',
@@ -19,6 +25,6 @@ return [
     'journal_add_post' => 'Entrée',
     'journal_add_cta' => 'Sauvegarder',
     'journal_blank_cta' => 'Ajouter votre première entrée dans le journal',
-    'journal_blank_description' => 'Le journal vous permet de vous rappeler d’événements passés, ou à venir.',
+    'journal_blank_description' => 'Le journal vous permet de vous rappeler d’évènements passés, ou à venir.',
     'delete_confirmation' => 'Êtes-vous sûr de vouloir supprimer cette entrée ?',
 ];

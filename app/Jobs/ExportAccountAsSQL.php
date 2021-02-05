@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Http\File;
+use App\Helpers\StorageHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Storage;
@@ -13,6 +14,9 @@ class ExportAccountAsSQL
 {
     use Dispatchable, SerializesModels;
 
+    /**
+     * @var string
+     */
     protected $path = '';
 
     /**
@@ -36,6 +40,7 @@ class ExportAccountAsSQL
      */
     public function handle()
     {
+        $tempFileName = null;
         try {
             $tempFileName = app(ExportAccount::class)
                     ->execute([
@@ -47,7 +52,7 @@ class ExportAccountAsSQL
             $tempFilePath = disk_adapter('local')->getPathPrefix().$tempFileName;
 
             // move the file to the public storage
-            return Storage::disk(self::STORAGE)
+            return StorageHelper::disk(self::STORAGE)
                 ->putFileAs($this->path, new File($tempFilePath), basename($tempFileName));
         } finally {
             // delete old file from temp folder

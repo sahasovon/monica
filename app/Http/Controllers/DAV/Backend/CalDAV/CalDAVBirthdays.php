@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\DAV\Backend\CalDAV;
 
-use App\Models\Contact\Contact;
 use Illuminate\Support\Facades\Log;
 use App\Models\Instance\SpecialDate;
 use Illuminate\Support\Facades\Auth;
@@ -76,6 +75,8 @@ class CalDAVBirthdays extends AbstractCalDAVBackend
                 Log::debug(__CLASS__.' prepareData: '.(string) $e);
             }
         }
+
+        return [];
     }
 
     private function hasBirthday($contact)
@@ -94,10 +95,11 @@ class CalDAVBirthdays extends AbstractCalDAVBackend
     /**
      * Returns the date for the specific uuid.
      *
+     * @param string|null $collectionId
      * @param string  $uuid
      * @return mixed
      */
-    public function getObjectUuid($uuid)
+    public function getObjectUuid($collectionId, $uuid)
     {
         return SpecialDate::where([
             'account_id' => Auth::user()->account_id,
@@ -110,10 +112,10 @@ class CalDAVBirthdays extends AbstractCalDAVBackend
      *
      * @return \Illuminate\Support\Collection
      */
-    public function getObjects()
+    public function getObjects($collectionId)
     {
-        $contacts = Auth::user()->account
-                    ->contacts()
+        // We only return the birthday of default addressBook
+        $contacts = Auth::user()->account->contacts()
                     ->real()
                     ->active()
                     ->get();
@@ -126,8 +128,12 @@ class CalDAVBirthdays extends AbstractCalDAVBackend
         });
     }
 
-    public function updateOrCreateCalendarObject($objectUri, $calendarData)
+    /**
+     * @return string|null
+     */
+    public function updateOrCreateCalendarObject($calendarId, $objectUri, $calendarData): ?string
     {
+        return null;
     }
 
     public function deleteCalendarObject($objectUri)

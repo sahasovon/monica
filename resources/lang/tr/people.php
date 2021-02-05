@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
 
     //index
@@ -52,6 +58,7 @@ return [
     'people_delete_message' => 'Bağlantıyı Sil',
     'people_delete_confirmation' => 'Bu kişiyi silmek istediğinizden emin misiniz? Silinen kayıtlar geri alınamaz.',
     'people_add_birthday_reminder' => 'Mutlu yıllar diliyorum: isim',
+    'people_add_birthday_reminder_deceased' => 'Bu tarihte, :name doğum gününü kutlardı',
     'people_add_import' => '<a href=":url">Bağlantılarınızı aktarmak</a> istiyor musunuz?',
     'people_edit_email_error' => 'Bu e-mail adresine sahip bir kişi listenize kayıtlı. Lütfen farklı bir adres giriniz.',
     'people_export' => 'Vcard Formatında Çıkar',
@@ -85,7 +92,7 @@ return [
     'stay_in_touch_premium' => 'Bu özelliği kullanabilmek için hesabınızı yükseltmeniz gerekir',
     'stay_in_touch_modal_title' => 'İrtibatta kal',
     'stay_in_touch_modal_desc' => 'Size {firstname} ile bağlantıda kalmanızı düzenli aralıklarla e-posta ile hatırlatabiliriz.',
-    'stay_in_touch_modal_label' => 'Bana e-posta gönder her...',
+    'stay_in_touch_modal_label' => 'Her... {count} günde bir bana e-posta gönder',
 
     // Calls
     'modal_call_title' => 'Çağrıyı logla',
@@ -151,6 +158,7 @@ return [
     'information_edit_probably' => 'Bu kişi muhtemelen...',
     'information_edit_not_year' => 'Bu kişinin doğum tarihinin gün ve ay kısmını biliyorum, yılını değil…',
     'information_edit_exact' => 'Bu kişinin tam doğum tarihini biliyorum...',
+    'information_edit_birthdate_label' => 'Doğum tarihi',
     'information_no_work_defined' => 'Tanımlanmış iş bilgisi yok',
     'information_work_at' => ':company',
     'work_add_cta' => 'İş Bilgilerini Güncelle',
@@ -184,6 +192,7 @@ return [
     'reminders_create_success' => 'Hatırlatıcı başarıyla eklendi',
     'reminders_delete_success' => 'Hatırlatıcı başarıyla silindi',
     'reminders_update_success' => 'Hatırlatıcı başarıyla güncellendi',
+    'reminders_add_optional_comment' => 'İsteğe bağlı yorum',
 
     'reminder_frequency_day' => 'her gün|[2,*]:number günde bir',
     'reminder_frequency_week' => 'her hafta|[2,*]:number haftada bir',
@@ -238,28 +247,29 @@ return [
     'activity_type_just_hung_out' => 'sadece takıldık',
     'activity_type_watched_movie_at_home' => 'evde film izledik',
     'activity_type_talked_at_home' => 'sadece evde konuştuk',
-    'activity_type_did_sport_activities_together' => 'birlikte spor yaptık',
+    'activity_type_did_sport_activities_together' => 'birlikte spor yapıldı',
     'activity_type_ate_at_his_place' => 'onların yerinde yemek yedik',
     'activity_type_went_bar' => 'bara gittik',
     'activity_type_ate_at_home' => 'evde yemek yedik',
-    'activity_type_picknicked' => 'piknik yaptık',
+    'activity_type_picnicked' => 'piknik yaptık',
     'activity_type_ate_restaurant' => 'restoranda yemek yedik',
     'activity_type_went_theater' => 'tiyatroya gittik',
     'activity_type_went_concert' => 'konsere gittik',
     'activity_type_went_play' => 'oyuna gittik',
     'activity_type_went_museum' => 'müzeye gittik',
     'activities_add_activity' => 'Aktivite ekle',
-    'activities_more_details' => 'Daha fazla ayrıntı',
-    'activities_hide_details' => 'Ayrıntıları gizle',
-    'activities_delete_confirmation' => 'Bu aktiviteyi silmek istediğinizden emin misiniz?',
+    'activities_add_more_details' => 'Daha fazla ayrıntı ekle',
+    'activities_add_emotions' => 'Duygu ekle',
+    'activities_add_category' => 'Bir kategori belirt',
+    'activities_add_participants_cta' => 'Katılımcıları ekle',
     'activities_item_information' => ':Activity. :date tarihinde oldu',
-    'activities_add_title' => ':name ile ne yaptınız?',
+    'activities_add_title' => '{name} ile ne yaptınız?',
     'activities_summary' => 'Ne yaptığınızı açıklayın',
     'activities_add_pick_activity' => '(İsteğe bağlı) Bu aktiviteyi kategorilere ayırmak ister misiniz? Zorunda değilsin, ama daha sonra size istatistikler verecektir',
-    'activities_add_date_occured' => 'Bu aktivitenin gerçekleştiği tarih',
-    'activities_add_optional_comment' => 'İsteğe bağlı yorum',
-    'activities_add_cta' => 'Aktiviteyi kaydet',
-    'activities_blank_title' => 'Geçmişte :name ile ne yaptığınızın ve ne hakkında konuştuğunuzun kaydını tutun',
+    'activities_add_date_occured' => 'Bu aktivite şu tarihte gerçekleşti...',
+    'activities_add_participants' => 'Bu aktiviteye {name} dışında kim katıldı? (isteğe bağlı)',
+    'activities_add_emotions_title' => 'Bu aktivite sırasında neler hissettiğinizi kaydetmek ister misiniz? (isteğe bağlı)',
+    'activities_blank_title' => 'Geçmişte {name} ile ne yaptığınızın ve ne hakkında konuştuğunuzun kaydını tutun',
     'activities_blank_add_activity' => 'Bir aktivite ekle',
     'activities_add_success' => 'Aktivite başarıyla eklendi',
     'activities_add_error' => 'Aktivite eklenirken hata oluştu',
@@ -273,6 +283,10 @@ return [
     'activities_profile_year_summary_activity_types' => 'İşte :year yılında birlikte gerçekleştirdiğiniz etkinlik türlerinin bir dökümü',
     'activities_profile_year_summary' => 'İşte :year yılında ikinizin yaptıkları',
     'activities_profile_number_occurences' => ':value aktivite',
+    'activities_list_participants' => 'Katılımcılar:',
+    'activities_list_emotions' => 'Hissedilen duygular:',
+    'activities_list_date' => 'Gerçekleşti',
+    'activities_list_category' => 'Kategori:',
 
     // notes
     'notes_create_success' => 'Not başarıyla oluşturuldu',
@@ -290,17 +304,23 @@ return [
     'gifts_delete_confirmation' => 'Bu hediyeyi silmek istediğinizden emin misiniz?',
     'gifts_add_gift' => 'Hediye ekle',
     'gifts_link' => 'Link',
-    'gifts_for' => 'Kimin İçin:',
+    'gifts_for' => '{name} için',
     'gifts_delete_cta' => 'Sil',
     'gifts_add_title' => ':name için hediye yönetimi',
     'gifts_add_gift_idea' => 'Hediye Fikri',
     'gifts_add_gift_already_offered' => 'Hediye önerildi',
     'gifts_add_gift_received' => 'Hediye alındı',
     'gifts_add_gift_title' => 'Bu hediye nedir?',
+    'gifts_add_gift_name' => 'Hediye adı',
     'gifts_add_link' => 'Web sayfası linki (isteğe bağlı)',
     'gifts_add_value' => 'Değer (isteğe bağlı)',
     'gifts_add_comment' => 'Yorum (isteğe bağlı)',
-    'gifts_add_someone' => 'Bu hediye özellikle :name\'nin ailesinden birisi için',
+    'gifts_add_recipient' => 'Alıcı (isteğe bağlı)',
+    'gifts_add_recipient_field' => 'Alıcı',
+    'gifts_add_photo' => 'Fotoğraf (isteğe bağlı)',
+    'gifts_add_photo_title' => 'Bu hediye için bir fotoğraf ekle',
+    'gifts_add_someone' => 'Bu hediye özellikle {name}\'nin ailesinden birisi için',
+    'gifts_delete_title' => 'Hediye sil',
     'gifts_ideas' => 'Hediye fikirleri',
     'gifts_offered' => 'Önerilen hediyeler',
     'gifts_offered_as_an_idea' => 'Fikir olarak işaretle',
@@ -355,6 +375,7 @@ return [
     'deceased_know_date' => 'Bu kişinin öldüğü tarihi biliyorum',
     'deceased_add_reminder' => 'Bu tarih için bir hatırlatıcı ekleyin',
     'deceased_label' => 'Ölmüş',
+    'deceased_date_label' => 'Ölüm tarihi',
     'deceased_label_with_date' => ':date tarihinde öldü',
     'deceased_age' => 'Ölüm yaşı',
 
@@ -413,6 +434,11 @@ return [
     'life_event_delete_description' => 'Bu yaşam olayını silmek istediğinizden emin misiniz? Silme işlemi geri alınamaz.',
     'life_event_delete_success' => 'Yaşam olayı silindi',
     'life_event_date_it_happened' => 'Meydana geldiği tarih',
+    'life_event_category_work_education' => 'İş & eğitim',
+    'life_event_category_family_relationships' => 'Aile & ilişkiler',
+    'life_event_category_home_living' => 'Ev & yaşam',
+    'life_event_category_health_wellness' => 'Sağlık & sıhhat',
+    'life_event_category_travel_experiences' => 'Seyahat & deneyimler',
     'life_event_sentence_new_job' => 'Yeni bir iş başlatmak',
     'life_event_sentence_retirement' => 'Emekli olmak',
     'life_event_sentence_new_school' => 'Okula başlamak',
@@ -443,7 +469,7 @@ return [
     'life_event_sentence_wear_glass_or_contact' => 'Gözlük veya lens takmaya başlamak',
     'life_event_sentence_broken_bone' => 'Bir kemiği kırmak',
     'life_event_sentence_removed_braces' => 'Diş tellerini kaldırmak',
-    'life_event_sentence_surgery' => 'Ameliyat olmak',
+    'life_event_sentence_surgery' => 'El cerrahisi',
     'life_event_sentence_dentist' => 'Dişçiye gitmek',
     'life_event_sentence_new_sport' => 'Bir spora başlamak',
     'life_event_sentence_new_hobby' => 'Bir hobiye başlamak',
@@ -474,6 +500,8 @@ return [
     'photo_current_profile_pic' => 'Mevcut profil resmi',
     'photo_make_profile_pic' => 'Profil resmi yapın',
     'photo_delete' => 'Fotoğrafı sil',
+    'photo_next' => 'Sonraki fotoğraf',
+    'photo_previous' => 'Önceki fotoğraf',
 
     // Avatars
     'avatar_change_title' => 'Avatarınızı değiştirin',
@@ -483,7 +511,24 @@ return [
     'avatar_gravatar' => 'Bu kişinin e-posta adresiyle ilişkili Gravatar.<a href="https://gravatar.com/">Gravatar</a>, kullanıcıların e-posta adreslerini fotoğraflarla ilişkilendirmelerini sağlayan global bir sistemdir.',
     'avatar_current' => 'Mevcut avatarı kullanın',
     'avatar_photo' => 'Yüklediğiniz bir fotoğraftan',
+    'avatar_crop_new_avatar_photo' => 'Yeni profil resmini kırp',
 
     // emotions
     'emotion_this_made_me_feel' => 'Bu size … hissettirdi',
+
+    // logs
+    'auditlogs_link' => 'Geçmiş',
+    'auditlogs_title' => 'Bu hesaba ait tüm kayıtlar',
+    'auditlogs_breadcrumb' => 'Geçmiş',
+    'auditlogs_author' => ':date tarihinde :name adına göre',
+
+    // contact field label
+    'contact_field_label_home' => 'Ev',
+    'contact_field_label_work' => 'Iş',
+    'contact_field_label_cell' => 'Cep Telefonu',
+    'contact_field_label_fax' => 'Faks',
+    'contact_field_label_pager' => 'Çağrı Cihazı',
+    'contact_field_label_main' => 'Ana',
+    'contact_field_label_other' => 'Diğer',
+    'contact_field_label_personal' => 'Kişisel',
 ];

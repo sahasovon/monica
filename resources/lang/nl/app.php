@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
     'yes' => 'Ja',
     'no' => 'Nee',
@@ -7,6 +13,7 @@ return [
     'save' => 'Opslaan',
     'add' => 'Toevoegen',
     'cancel' => 'Annuleren',
+    'confirm' => 'Bevestigen',
     'delete_confirm' => 'Weet je het zeker?',
     'delete' => 'Verwijderen',
     'edit' => 'Bewerken',
@@ -21,13 +28,11 @@ return [
     'done' => 'Gereed',
     'back' => 'Terug',
     'verify' => 'Bevestigen',
-    'for' => 'voor',
     'new' => 'nieuw',
     'unknown' => 'Ik weet het niet',
     'load_more' => 'Meer laden',
     'loading' => 'Laden...',
     'with' => 'met',
-    'days' => 'dag|dagen',
     'today' => 'vandaag',
     'yesterday' => 'gisteren',
     'another_day' => 'een andere dag',
@@ -37,7 +42,9 @@ return [
     'upgrade' => 'Upgrade om te ontgrendelen',
     'percent_uploaded' => '{percent}% geüpload',
     'retry' => 'Opnieuw Proberen',
+    'filter' => 'Filter de lijst',
     'go_back' => 'Terug',
+    'file_selected' => '1 bestand geselecteerd...|{count} bestanden geselecteerd...',
 
     'application_title' => 'Monica – persoonlijke relatie manager',
     'application_description' => 'Monica is een app voor het beheren van interacties met uw geliefden, vrienden en familie.',
@@ -87,7 +94,7 @@ return [
     'breadcrumb_add_note' => 'Notitie toevoegen',
     'breadcrumb_edit_note' => 'Notitie bewerken',
     'breadcrumb_api' => 'API',
-    'breadcrumb_dav' => 'DAV Resources',
+    'breadcrumb_dav' => 'DAV-bronnen',
     'breadcrumb_edit_introductions' => 'Hoe hebben jullie elkaar ontmoet',
     'breadcrumb_settings_personalization' => 'Personalisatie',
     'breadcrumb_settings_security' => 'Beveiliging',
@@ -101,18 +108,20 @@ return [
 
     'error_title' => 'Oeps! Er is iets misgegaan.',
     'error_unauthorized' => 'Je hebt niet de rechten om dit onderdeel te bewerken.',
+    'error_user_account' => 'Deze gebruiker behoort niet tot het opgegeven account.',
     'error_save' => 'Er is een fout opgetreden bij het opslaan van de gegevens.',
     'error_try_again' => 'Er ging iets mis. Probeer opnieuw.',
     'error_id' => 'Fout-ID: :id',
     'error_unavailable' => 'Service niet beschikbaar',
     'error_maintenance' => 'Onderhoud in uitvoering. Zo terug.',
     'error_help' => 'We zijn zo terug.',
-    'error_twitter' => 'Volg <a href="https://twitter.com/:twitter">ons Twitter account</a> als je gewaarschuwd wilt worden als we terug zijn.',
+    'error_twitter' => '<a href="https://twitter.com/:twitter">Volg ons op Twitter</a> als je gewaarschuwd wilt worden als we terug zijn.',
+    'error_no_term' => 'Er zijn nog geen voorwaarden opgesteld voor deze server.',
 
     'default_save_success' => 'De gegevens zijn opgeslagen.',
 
     'compliance_title' => 'Sorry voor de onderbreking.',
-    'compliance_desc' => 'We hebben onze <a href=":urlterm" hreflang=":hreflang">gebruiksvoorwaarden </a> en <a href=":url" hreflang=":hreflang">privacybeleid</a> aangepast. We zijn verplicht u te vragen deze opnieuw te lezen en goed te keuren om uw account te kunnen blijven gebruiken.',
+    'compliance_desc' => 'We hebben onze <a href=":urlterm" hreflang=":hreflang">gebruiksvoorwaarden</a> en ons <a href=":url" hreflang=":hreflang">privacybeleid</a> aangepast. We zijn verplicht u te vragen deze opnieuw te lezen en goed te keuren, om je account te kunnen blijven gebruiken.',
     'compliance_desc_end' => 'Wij doen niets vervelends met uw gegevens of account en zullen dit ook nooit doen.',
     'compliance_terms' => 'Accepteer de nieuwe voorwaarden en privacybeleid',
 
@@ -132,7 +141,7 @@ return [
     'relationship_type_partner' => 'partner',
     'relationship_type_partner_female' => 'partner',
     'relationship_type_partner_with_name' => ':name\'s van partner',
-    'relationship_type_partner_female_with_name' => ':name’s van partner',
+    'relationship_type_partner_female_with_name' => ':name’s partner',
 
     'relationship_type_spouse' => 'echtgenoot',
     'relationship_type_spouse_female' => 'echtgenoot',
@@ -229,8 +238,8 @@ return [
     'relationship_type_friend_with_name' => ':name’s vriend',
     'relationship_type_friend_female_with_name' => ':name’s vriend',
 
-    'relationship_type_bestfriend' => 'beste Vriend',
-    'relationship_type_bestfriend_female' => 'beste Vriend',
+    'relationship_type_bestfriend' => 'beste vriend',
+    'relationship_type_bestfriend_female' => 'beste vriend',
     'relationship_type_bestfriend_with_name' => ':name’s beste vriend',
     'relationship_type_bestfriend_female_with_name' => ':name’s beste vriend',
 
@@ -256,7 +265,7 @@ return [
 
     'relationship_type_protege' => 'protege',
     'relationship_type_protege_female' => 'protege',
-    'relationship_type_protege_with_name' => ':name’s protege',
+    'relationship_type_protege_with_name' => ':name\'s protege',
     'relationship_type_protege_female_with_name' => ':name\'s protege',
 
     'relationship_type_ex_husband' => 'ex-echtgenoot',

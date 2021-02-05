@@ -15,6 +15,7 @@ use App\Services\Instance\Geolocalization\GetGPSCoordinate;
 
 class GetWeatherInformation extends BaseService
 {
+    /** @var GuzzleClient */
     protected $client;
 
     /**
@@ -40,7 +41,7 @@ class GetWeatherInformation extends BaseService
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException if the Place object is not found
      * @throws \GuzzleHttp\Exception\ClientException if the request to Darksky crashed
      */
-    public function execute(array $data, GuzzleClient $client = null)
+    public function execute(array $data, GuzzleClient $client = null): ?Weather
     {
         $this->validateWeatherEnvVariables();
 
@@ -52,7 +53,7 @@ class GetWeatherInformation extends BaseService
             $place = $this->fetchGPS($place);
 
             if (is_null($place)) {
-                return;
+                return null;
             }
         }
 
@@ -88,7 +89,7 @@ class GetWeatherInformation extends BaseService
      * @return Weather|null
      * @throws \Exception
      */
-    private function query(Place $place)
+    private function query(Place $place): ?Weather
     {
         $query = $this->buildQuery($place);
 
@@ -106,6 +107,8 @@ class GetWeatherInformation extends BaseService
         } catch (ClientException $e) {
             Log::error('Error making the call: '.$e);
         }
+
+        return null;
     }
 
     /**

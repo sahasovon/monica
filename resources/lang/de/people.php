@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
 
     //index
@@ -52,6 +58,7 @@ return [
     'people_delete_message' => 'Kontakt löschen',
     'people_delete_confirmation' => 'Möchtest du den Kontakt wirklich löschen? Es gibt kein Zurück.',
     'people_add_birthday_reminder' => 'Gratuliere :name zum Geburtstag',
+    'people_add_birthday_reminder_deceased' => 'Heute hätte, :name, seinen Geburtstag gefeiert',
     'people_add_import' => 'Möchtest du Kontakte <a href=":url">importieren</a>?',
     'people_edit_email_error' => 'Es gibt bereits ein Kontakt in deinem Konto mit dieser e-Mail-Adresse. Bitte wähle eine anderen.',
     'people_export' => 'Als vCard exportieren',
@@ -85,7 +92,7 @@ return [
     'stay_in_touch_premium' => 'Du musst dein Konto upgraden, um diese Funktion nutzen zu können',
     'stay_in_touch_modal_title' => 'In Kontakt bleiben',
     'stay_in_touch_modal_desc' => 'Wir können dich per E-Mail daran erinnern, in regelmäßigen Abständen mit {firstname} in Kontakt zu bleiben.',
-    'stay_in_touch_modal_label' => 'Schicke mir eine E-Mail jede...',
+    'stay_in_touch_modal_label' => 'Sende mir eine E-Mail jeden... {count} Tag|Sende mir eine E-Mail alle... {count} Tage',
 
     // Calls
     'modal_call_title' => 'Telefonat vermerken',
@@ -151,6 +158,7 @@ return [
     'information_edit_probably' => 'Diese Person ist wahrscheinlich',
     'information_edit_not_year' => 'Ich weiß den Tag und Monat des Geburtsdatums dieser Person, aber nicht das Jahr…',
     'information_edit_exact' => 'Ich kenne den Geburtstag der Person...',
+    'information_edit_birthdate_label' => 'Geburtstag',
     'information_no_work_defined' => 'keine Arbeitsplatz-Informationen angegeben',
     'information_work_at' => 'bei :company',
     'work_add_cta' => 'Ändere Arbeitsplatz-Informationen',
@@ -184,6 +192,7 @@ return [
     'reminders_create_success' => 'Die Erinnerung wurde erfolgreich hinzugefügt',
     'reminders_delete_success' => 'Die Erinnerung wurde erfolgreich gelöscht',
     'reminders_update_success' => 'Die Erinnerung wurde erfolgreich geändert',
+    'reminders_add_optional_comment' => 'Optionaler Kommentar',
 
     'reminder_frequency_day' => 'jeden Tag | alle :number Tage',
     'reminder_frequency_week' => 'jede Woche|alle :number Wochen',
@@ -238,28 +247,29 @@ return [
     'activity_type_just_hung_out' => 'einfach zusammen Zeit verbracht',
     'activity_type_watched_movie_at_home' => 'zu Hause einen Film gesehen',
     'activity_type_talked_at_home' => 'zu Hause geredet',
-    'activity_type_did_sport_activities_together' => 'zusammen Sport gemacht',
+    'activity_type_did_sport_activities_together' => 'haben zusammen Sport gemacht',
     'activity_type_ate_at_his_place' => 'bei Ihnen gegessen',
     'activity_type_went_bar' => 'in eine Bar gegangen',
     'activity_type_ate_at_home' => 'zu Hause gegessen',
-    'activity_type_picknicked' => 'Picknick gemacht',
+    'activity_type_picnicked' => 'gepicknickt',
     'activity_type_ate_restaurant' => 'im Restaurant gegessen',
     'activity_type_went_theater' => 'ins Theater gegangen',
     'activity_type_went_concert' => 'zu einem Konzert gegangen',
     'activity_type_went_play' => 'ein Theaterstück angesehen',
     'activity_type_went_museum' => 'ins Museum gegangen',
     'activities_add_activity' => 'Aktivität hinzufügen',
-    'activities_more_details' => 'Mehr Details',
-    'activities_hide_details' => 'Weniger Details',
-    'activities_delete_confirmation' => 'Möchtest du diese Aktivität wirklich löschen?',
+    'activities_add_more_details' => 'Weitere Details hinzufügen',
+    'activities_add_emotions' => 'Emotionen hinzufügen',
+    'activities_add_category' => 'Kategorie angeben',
+    'activities_add_participants_cta' => 'Teilnehmer hinzufügen',
     'activities_item_information' => ':Activity. Fand am :date statt',
-    'activities_add_title' => 'Was hast du mit :name gemacht?',
+    'activities_add_title' => 'Was hast du mit {name} gemacht?',
     'activities_summary' => 'Beschreibe, was ihr gemacht habt',
     'activities_add_pick_activity' => '(Optional) Möchten Sie diese Aktivität kategorisieren? Das müssen Sie nicht, aber es wird Ihnen später Statistiken liefern.',
-    'activities_add_date_occured' => 'Datum der Aktivität',
-    'activities_add_optional_comment' => 'Optionaler Kommentar',
-    'activities_add_cta' => 'Aktivität aufzeichnen',
-    'activities_blank_title' => 'Behalte im Auge, was du mit :name unternommen hast und worüber ihr geredet habt',
+    'activities_add_date_occured' => 'Die Aktivität war am...',
+    'activities_add_participants' => 'Wer hat außer {name} an dieser Aktivität teilgenommen? (optional)',
+    'activities_add_emotions_title' => 'Möchtest du protokollieren, wie du dich während dieser Aktivität gefühlt hast? (optional)',
+    'activities_blank_title' => 'Behalte im Auge, was du mit {name} unternommen hast und worüber ihr geredet habt',
     'activities_blank_add_activity' => 'Aktivität hinzufügen',
     'activities_add_success' => 'Aktivität erfolgreich hinzugefügt',
     'activities_add_error' => 'Fehler beim Hinzufügen der Aktivität',
@@ -273,6 +283,10 @@ return [
     'activities_profile_year_summary_activity_types' => 'Hier ist eine Aufzeichnung von Aktivitäten, die Sie gemeinsam im letzten Jahr erlebt haben',
     'activities_profile_year_summary' => 'Das haben Sie zwei im :year gemeinsam gemacht',
     'activities_profile_number_occurences' => ':value Aktivität|:value Aktivitäten',
+    'activities_list_participants' => 'Teilnehmer:',
+    'activities_list_emotions' => 'Emotionen gefühlt:',
+    'activities_list_date' => 'Geschehen am',
+    'activities_list_category' => 'Kategorie:',
 
     // notes
     'notes_create_success' => 'Die Notiz wurde erfolgreich hinzugefügt',
@@ -290,17 +304,23 @@ return [
     'gifts_delete_confirmation' => 'Möchtest du das Geschenk wirklich löschen?',
     'gifts_add_gift' => 'Geschenk hinzufügen',
     'gifts_link' => 'Link',
-    'gifts_for' => 'Für:',
+    'gifts_for' => 'Für: {name}',
     'gifts_delete_cta' => 'Löschen',
     'gifts_add_title' => 'Geschenkverwaltung für :name',
     'gifts_add_gift_idea' => 'Geschenkidee',
     'gifts_add_gift_already_offered' => 'Bereits verschenkt',
     'gifts_add_gift_received' => 'Geschenk erhalten',
     'gifts_add_gift_title' => 'Was ist es für ein Geschenk?',
+    'gifts_add_gift_name' => 'Geschenkname',
     'gifts_add_link' => 'Link zur Website (optional)',
     'gifts_add_value' => 'Wert (optional)',
     'gifts_add_comment' => 'Kommentar (optional)',
-    'gifts_add_someone' => 'Dieses Geschenk ist für jemanden in :name\'s Familie',
+    'gifts_add_recipient' => 'Empfänger (optional)',
+    'gifts_add_recipient_field' => 'Empfänger',
+    'gifts_add_photo' => 'Foto (optional)',
+    'gifts_add_photo_title' => 'Foto für dieses Geschenk hinzufügen',
+    'gifts_add_someone' => 'Dieses Geschenk ist insbesondere für jemanden in {name}\'s Familie',
+    'gifts_delete_title' => 'Ein Geschenk löschen',
     'gifts_ideas' => 'Geschenkideen',
     'gifts_offered' => 'Verschenkte Geschenke',
     'gifts_offered_as_an_idea' => 'Als Idee markieren',
@@ -355,6 +375,7 @@ return [
     'deceased_know_date' => 'Ich weiß das Datum an dem diese Person verstarb',
     'deceased_add_reminder' => 'Erstelle eine Erinnerung für den Todestag',
     'deceased_label' => 'Verstorben',
+    'deceased_date_label' => 'Todestag',
     'deceased_label_with_date' => 'Verstorben am :date',
     'deceased_age' => 'Todesalter',
 
@@ -413,6 +434,11 @@ return [
     'life_event_delete_description' => 'Möchten Sie das Lebensereignis löschen? Dies kann nicht rückgängig gemacht werden.',
     'life_event_delete_success' => 'Das Ereignis wurde gelöscht',
     'life_event_date_it_happened' => 'Tag an dem es passierte',
+    'life_event_category_work_education' => 'Arbeit & Ausbildung',
+    'life_event_category_family_relationships' => 'Familie & Beziehungen',
+    'life_event_category_home_living' => 'Home & living',
+    'life_event_category_health_wellness' => 'Gesundheit & Wellness',
+    'life_event_category_travel_experiences' => 'Reisen & Erfahrungen',
     'life_event_sentence_new_job' => 'Neuen Arbeitsplatz angetreten',
     'life_event_sentence_retirement' => 'Im Ruhestand',
     'life_event_sentence_new_school' => 'Schulbeginn',
@@ -474,16 +500,35 @@ return [
     'photo_current_profile_pic' => 'Aktuelles Profilbild',
     'photo_make_profile_pic' => 'Zu Profilbild machen',
     'photo_delete' => 'Bild löschen',
+    'photo_next' => 'Nächstes Foto',
+    'photo_previous' => 'Vorheriges Bild',
 
     // Avatars
-    'avatar_change_title' => 'Change your avatar',
-    'avatar_question' => 'Which avatar would you like to use?',
-    'avatar_default_avatar' => 'The default avatar',
-    'avatar_adorable_avatar' => 'The Adorable avatar',
-    'avatar_gravatar' => 'The Gravatar associated with the email address of this person. <a href="https://gravatar.com/">Gravatar</a> is a global system that lets users associate email addresses with photos.',
-    'avatar_current' => 'Keep the current avatar',
-    'avatar_photo' => 'From a photo that you upload',
+    'avatar_change_title' => 'Avatar ändern',
+    'avatar_question' => 'Welchen Avatar möchtest du verwenden?',
+    'avatar_default_avatar' => 'Den Standard-Avatar',
+    'avatar_adorable_avatar' => 'Den niedlichen Avatar',
+    'avatar_gravatar' => 'Den Gravatar, welcher der E-Mail-Adresse dieser Person zugeordnet ist. <a href="https://gravatar.com/">Gravatar</a> ist ein globales System, mit dem Benutzer E-Mail-Adressen mit Fotos verknüpfen können.',
+    'avatar_current' => 'Aktuellen Avatar beibehalten',
+    'avatar_photo' => 'Ein Foto hochladen',
+    'avatar_crop_new_avatar_photo' => 'Neuen Avatar zuschneiden',
 
     // emotions
     'emotion_this_made_me_feel' => 'Dadurch fühlen sie sich…',
+
+    // logs
+    'auditlogs_link' => 'Verlauf',
+    'auditlogs_title' => 'Alles, was :name passiert ist',
+    'auditlogs_breadcrumb' => 'Verlauf',
+    'auditlogs_author' => 'Nach :name am :date',
+
+    // contact field label
+    'contact_field_label_home' => 'Home',
+    'contact_field_label_work' => 'Arbeit',
+    'contact_field_label_cell' => 'Mobil',
+    'contact_field_label_fax' => 'Fax',
+    'contact_field_label_pager' => 'Pager',
+    'contact_field_label_main' => 'Hauptinformationen',
+    'contact_field_label_other' => 'Sonstiges',
+    'contact_field_label_personal' => 'Persönlich',
 ];

@@ -35,7 +35,7 @@ class CreateUser extends BaseService
      * @param array $data
      * @return User
      */
-    public function execute(array $data) : User
+    public function execute(array $data): User
     {
         $this->validate($data);
 
@@ -45,7 +45,11 @@ class CreateUser extends BaseService
         $user = $this->setRegionalParameters($user, $ipAddress);
         $user->save();
 
-        $user->acceptPolicy($ipAddress);
+        app(AcceptPolicy::class)->execute([
+            'account_id' => $user->account_id,
+            'user_id' => $user->id,
+            'ip_address' => $ipAddress,
+        ]);
 
         return $user;
     }
@@ -56,7 +60,7 @@ class CreateUser extends BaseService
      * @param array $data
      * @return User
      */
-    private function createUser($data) : User
+    private function createUser($data): User
     {
         // create the user
         $user = new User();
@@ -77,7 +81,7 @@ class CreateUser extends BaseService
      * @param string|null $ipAddress
      * @return User
      */
-    private function setRegionalParameters($user, $ipAddress) : User
+    private function setRegionalParameters($user, $ipAddress): User
     {
         $infos = RequestHelper::infos($ipAddress);
 
@@ -111,15 +115,19 @@ class CreateUser extends BaseService
         }
 
         // Temperature scale
-        switch ($country->cca2) {
-            case 'US':
-            case 'BZ':
-            case 'KY':
-                $user->temperature_scale = 'fahrenheit';
-                break;
-            default:
-                $user->temperature_scale = 'celsius';
-                break;
+        if (! is_null($country)) {
+            switch ($country->cca2) {
+                case 'US':
+                case 'BZ':
+                case 'KY':
+                    $user->temperature_scale = 'fahrenheit';
+                    break;
+                default:
+                    $user->temperature_scale = 'celsius';
+                    break;
+            }
+        } else {
+            $user->temperature_scale = 'celsius';
         }
 
         return $user;
@@ -132,7 +140,7 @@ class CreateUser extends BaseService
      * @param string $currency
      * @return bool
      */
-    private function associateCurrency($user, $currency) : bool
+    private function associateCurrency($user, $currency): bool
     {
         $currencyObj = Currency::where('iso', $currency)->first();
         if (! is_null($currencyObj)) {

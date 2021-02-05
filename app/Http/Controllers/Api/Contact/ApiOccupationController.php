@@ -64,11 +64,11 @@ class ApiOccupationController extends ApiController
     {
         try {
             $occupation = app(CreateOccupation::class)->execute(
-                $request->all()
+                $request->except(['account_id'])
                     +
                     [
-                    'account_id' => auth()->user()->account->id,
-                ]
+                        'account_id' => auth()->user()->account_id,
+                    ]
             );
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound();
@@ -93,12 +93,12 @@ class ApiOccupationController extends ApiController
     {
         try {
             $occupation = app(UpdateOccupation::class)->execute(
-                $request->all()
+                $request->except(['account_id', 'occupation_id'])
                     +
                     [
-                    'account_id' => auth()->user()->account->id,
-                    'occupation_id' => $occupationId,
-                ]
+                        'account_id' => auth()->user()->account_id,
+                        'occupation_id' => $occupationId,
+                    ]
             );
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound();
@@ -118,11 +118,11 @@ class ApiOccupationController extends ApiController
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(Request $request, $occupationId)
+    public function destroy(Request $request, int $occupationId)
     {
         try {
             app(DestroyOccupation::class)->execute([
-                'account_id' => auth()->user()->account->id,
+                'account_id' => auth()->user()->account_id,
                 'occupation_id' => $occupationId,
             ]);
         } catch (ModelNotFoundException $e) {
@@ -133,6 +133,6 @@ class ApiOccupationController extends ApiController
             return $this->respondInvalidQuery();
         }
 
-        return $this->respondObjectDeleted((int) $occupationId);
+        return $this->respondObjectDeleted($occupationId);
     }
 }

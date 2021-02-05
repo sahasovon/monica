@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
     'yes' => 'Si',
     'no' => 'No',
@@ -7,6 +13,7 @@ return [
     'save' => 'Guardar',
     'add' => 'Añadir',
     'cancel' => 'Cancelar',
+    'confirm' => 'Confirmar',
     'delete_confirm' => '¿Seguro?',
     'delete' => 'Eliminar',
     'edit' => 'Editar',
@@ -16,18 +23,16 @@ return [
     'close' => 'Cerrar',
     'copy' => 'Copiar',
     'create' => 'Crear',
-    'remove' => 'Remover',
+    'remove' => 'Eliminar',
     'revoke' => 'Revocar',
     'done' => 'Hecho',
     'back' => 'Volver',
     'verify' => 'Verificar',
-    'for' => 'para',
     'new' => 'nuevo',
     'unknown' => 'No lo sé',
     'load_more' => 'Cargar más',
     'loading' => 'Cargando...',
     'with' => 'con',
-    'days' => 'dia|dias',
     'today' => 'hoy',
     'yesterday' => 'ayer',
     'another_day' => 'otro día',
@@ -37,13 +42,15 @@ return [
     'upgrade' => 'Actualiza para desbloquear',
     'percent_uploaded' => '{percent}% cargado',
     'retry' => 'Reintentar',
+    'filter' => 'Filtrar la lista',
     'go_back' => 'Volver atrás',
+    'file_selected' => '1 archivo seleccionado...|{count} archivos seleccionados...',
 
     'application_title' => 'Monica – gestor de relaciones personales',
-    'application_description' => 'Monica es una herramienta para gestionar las interacciones con sus seres queridos, amigos y familiares.',
-    'application_og_title' => 'Ten mejores relaciones con tus seres queridos. CRM gratis en línea para amigos y familiares.',
+    'application_description' => 'Monica es una herramienta para gestionar tus interacciones con tus seres queridos, amigos y familiares.',
+    'application_og_title' => 'Mejora la relación con tus seres queridos. CRM gratis en línea para amigos y familia.',
 
-    'markdown_description' => '¿Desea dar formato a su texto de una manera agradable? Soportamos el uso de Markdown para añadir negrita, cursiva, listas y más.',
+    'markdown_description' => '¿Quieres dar formato al texto de una manera agradable? Soportamos el uso de Markdown para añadir negrita, cursiva, listas y más.',
     'markdown_link' => 'Leer documentación',
 
     'header_settings_link' => 'Configuración',
@@ -79,7 +86,7 @@ return [
     'breadcrumb_settings_users_add' => 'Añadir un usuario',
     'breadcrumb_settings_subscriptions' => 'Suscripción',
     'breadcrumb_settings_import' => 'Importar',
-    'breadcrumb_settings_import_report' => 'Importar reporte',
+    'breadcrumb_settings_import_report' => 'Informe de importación',
     'breadcrumb_settings_import_upload' => 'Subir',
     'breadcrumb_settings_tags' => 'Etiquetas',
     'breadcrumb_add_significant_other' => 'Añadir relación',
@@ -101,6 +108,7 @@ return [
 
     'error_title' => '¡Ups! algo ha fallado.',
     'error_unauthorized' => 'No tienes permisos para editar este recurso.',
+    'error_user_account' => 'Este usuario no pertenece a la cuenta dada.',
     'error_save' => 'Tuvimos un error tratando de guardar los datos.',
     'error_try_again' => 'Se ha producido un error. Por favor, inténtelo de nuevo.',
     'error_id' => 'Error ID: :id',
@@ -108,12 +116,13 @@ return [
     'error_maintenance' => 'Mantenimiento en curso. Enseguida regresamos.',
     'error_help' => 'Enseguida regresamos.',
     'error_twitter' => 'Siguenos <a href="https://twitter.com/:twitter">en nuestra cuenta de Twitter</a> para saber cuando estamos de vuelta.',
+    'error_no_term' => 'Todavía no hay ninguna política para esta instancia.',
 
     'default_save_success' => 'Los datos han sido guardados.',
 
     'compliance_title' => 'Lamentamos la interrupción.',
     'compliance_desc' => 'Hemos cambiado nuestros <a href=":urlterm" hreflang=":hreflang">Terminos de Uso</a> y <a href=":url" hreflang=":hreflang">Política de Privacidad</a>. Por ley tenemos que pedirte que los revises y los aceptes para que puedas seguir usando tu cuenta.',
-    'compliance_desc_end' => 'No hacemos nada "sucio" con tus datos y nunca lo haremos.',
+    'compliance_desc_end' => 'No hacemos nada dudoso con tus datos o con tu cuenta, y nunca lo haremos.',
     'compliance_terms' => 'Aceptar nuevos términos y política de privacidad',
 
     // Relationship types
@@ -141,16 +150,16 @@ return [
 
     'relationship_type_date' => 'cita',
     'relationship_type_date_female' => 'cita',
-    'relationship_type_date_with_name' => 'la fecha de :name',
-    'relationship_type_date_female_with_name' => 'la fecha de :name',
+    'relationship_type_date_with_name' => 'la cita de :name',
+    'relationship_type_date_female_with_name' => 'la cita de :name',
 
     'relationship_type_lover' => 'amante',
     'relationship_type_lover_female' => 'amante',
-    'relationship_type_lover_with_name' => 'la amante de :name',
+    'relationship_type_lover_with_name' => 'el amante de :name',
     'relationship_type_lover_female_with_name' => 'la amante de :name',
 
     'relationship_type_inlovewith' => 'enamorado de',
-    'relationship_type_inlovewith_female' => 'enamorado de',
+    'relationship_type_inlovewith_female' => 'enamorada de',
     'relationship_type_inlovewith_with_name' => 'alguien :name está enamorado de',
     'relationship_type_inlovewith_female_with_name' => 'alguien :name está enamorado de',
 
@@ -242,7 +251,7 @@ return [
     'relationship_type_boss' => 'jefe',
     'relationship_type_boss_female' => 'jefa',
     'relationship_type_boss_with_name' => 'jefe de :name',
-    'relationship_type_boss_female_with_name' => 'jefa de :name',
+    'relationship_type_boss_female_with_name' => 'jefe de :name',
 
     'relationship_type_subordinate' => 'subordinado',
     'relationship_type_subordinate_female' => 'subordinada',
@@ -261,8 +270,8 @@ return [
 
     'relationship_type_ex_husband' => 'ex marido',
     'relationship_type_ex_husband_female' => 'ex esposa',
-    'relationship_type_ex_husband_with_name' => 'exmarido de :name',
-    'relationship_type_ex_husband_female_with_name' => 'exmujer de :name',
+    'relationship_type_ex_husband_with_name' => 'ex marido de :name',
+    'relationship_type_ex_husband_female_with_name' => 'ex mujer de :name',
 
     // emotions
     'emotion_primary_love' => 'Amor',
@@ -282,15 +291,15 @@ return [
     'emotion_secondary_optimism' => 'Optimismo',
     'emotion_secondary_enthrallment' => 'Enthrallment',
     'emotion_secondary_relief' => 'Relief',
-    'emotion_secondary_surprise' => 'Surprise',
-    'emotion_secondary_irritation' => 'Irritation',
-    'emotion_secondary_exasperation' => 'Exasperation',
+    'emotion_secondary_surprise' => 'Sorpresa',
+    'emotion_secondary_irritation' => 'Irritación',
+    'emotion_secondary_exasperation' => 'Exasperación',
     'emotion_secondary_rage' => 'Ira',
     'emotion_secondary_disgust' => 'Disgust',
     'emotion_secondary_envy' => 'Envidia',
     'emotion_secondary_suffering' => 'Suffering',
     'emotion_secondary_sadness' => 'Tristeza',
-    'emotion_secondary_disappointment' => 'Disappointment',
+    'emotion_secondary_disappointment' => 'Decepción',
     'emotion_secondary_shame' => 'Shame',
     'emotion_secondary_neglect' => 'Neglect',
     'emotion_secondary_sympathy' => 'Simpatía',
@@ -448,9 +457,9 @@ return [
 
     // dav
     'dav_contacts' => 'Contacts',
-    'dav_contacts_description' => ':name’s contacts',
-    'dav_birthdays' => 'Birthdays',
-    'dav_birthdays_description' => ':name’s contact’s birthdays',
-    'dav_tasks' => 'Tasks',
-    'dav_tasks_description' => ':name’s tasks',
+    'dav_contacts_description' => 'Contactos de :name',
+    'dav_birthdays' => 'Cumpleaños',
+    'dav_birthdays_description' => 'Cumpleaños del contacto :name',
+    'dav_tasks' => 'Tareas',
+    'dav_tasks_description' => 'Tareas de :name',
 ];

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * ⚠️ Editing not allowed except for 'en' language.
+ *
+ * @see https://github.com/monicahq/monica/blob/master/docs/contribute/translate.md for translations.
+ */
+
 return [
 
     /*
@@ -17,16 +23,15 @@ return [
     'throttle' => 'Çok fazla oturum açma girişiminde bulundunuz. Lütfen :seconds saniye içerisinde tekrar deneyiz.',
     'not_authorized' => 'Bu işlemi yürütme yetkiniz yok',
     'signup_disabled' => 'Kayıt şu anda devre dışı',
+    'signup_error' => 'Kullanıcı kayıt ederken bir hata oluştu',
     'back_homepage' => 'Ana sayfaya dön',
     'mfa_auth_otp' => 'İki faktörlü cihazınızla kimlik doğrulaması',
-    'mfa_auth_u2f' => 'U2F cihazıyla kimlik doğrulaması',
     'mfa_auth_webauthn' => 'Bir güvenlik anahtarıyla (WebAuthn) kimlik doğrulaması',
     '2fa_title' => 'İki Adımlı Doğrulama',
     '2fa_wrong_validation' => 'İki adımlı doğrulaması başarısız oldu.',
     '2fa_one_time_password' => 'İki adımlı doğrulama kodu',
     '2fa_recuperation_code' => 'İki aşamalı doğrulama kodu ile girin',
     '2fa_otp_help' => 'İki aşamalı kimlik doğrulama mobil uygulamanızı açın ve kodu kopyalayın',
-    'u2f_otp_extension' => 'U2F, Chrome, <a href="{urlquantum}" lang="en">Firefox</a> ve Opera\'da yerel olarak desteklenmektedir. Eski Firefox sürümlerinde, <a href="{urlext}">U2F Desteği Eklentisini</a> yükleyin.',
 
     'login_to_account' => 'Hesabınıza giriş yapın',
     'login_with_recovery' => 'Bir kurtarma kodu ile giriş yap',
@@ -73,7 +78,7 @@ return [
     'confirmation_title' => 'E-posta adresinizi doğrulayın',
     'confirmation_fresh' => 'E-posta adresinize yeni bir doğrulama linki gönderildi.',
     'confirmation_check' => 'Devam etmeden önce lütfen doğrulama linki için e-postanızı kontrol edin.',
-    'confirmation_request_another' => 'E-postayı almadıysanız <a href=":url">başka bir tane istemek için buraya tıklayın</a>.',
+    'confirmation_request_another' => 'E-postayı almadıysanız <a :action>başka bir tane istemek için buraya tıklayın</a>.',
 
     'confirmation_again' => 'Eğer e-posta adresinizi değiştirmek istiyorsanız <a href=":url" class="alert-link">buraya tıklayabilirsiniz</a>.',
     'email_change_current_email' => 'Geçerli e-posta adresi:',

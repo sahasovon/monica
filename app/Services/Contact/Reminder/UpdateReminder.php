@@ -37,10 +37,11 @@ class UpdateReminder extends BaseService
      * @param array $data
      * @return Reminder
      */
-    public function execute(array $data) : Reminder
+    public function execute(array $data): Reminder
     {
         $this->validate($data);
 
+        /** @var Reminder */
         $reminder = Reminder::where('account_id', $data['account_id'])
             ->where('contact_id', $data['contact_id'])
             ->findOrFail($data['reminder_id']);

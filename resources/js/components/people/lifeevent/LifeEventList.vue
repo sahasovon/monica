@@ -509,7 +509,12 @@
             </div>
             <p class="pt2">
               <span class="b">
-                {{ $t('people.life_event_sentence_' + lifeEvent.default_life_event_type_key) }}
+                <template v-if="lifeEvent.life_event_type_name">
+                  {{ lifeEvent.life_event_type_name }}
+                </template>
+                <template v-else>
+                  {{ $t('people.life_event_sentence_' + lifeEvent.default_life_event_type_key) }}
+                </template>
               </span> {{ lifeEvent.name }}
             </p>
             <p>{{ lifeEvent.note }}</p>
@@ -532,15 +537,13 @@
           </p>
         </div>
       </form>
-      <div class="relative">
-        <span class="fr">
-          <a class="btn center" href="" @click.prevent="closeDeleteModal()">
-            {{ $t('app.cancel') }}
-          </a>
-          <a :cy-name="'delete-life-event-button'" class="btn btn-primary" href="" @click.prevent="destroy(lifeEventToDelete)">
-            {{ $t('app.delete') }}
-          </a>
-        </span>
+      <div slot="button">
+        <a class="btn center" href="" @click.prevent="closeDeleteModal()">
+          {{ $t('app.cancel') }}
+        </a>
+        <a v-cy-name="'delete-life-event-button'" class="btn btn-primary" href="" @click.prevent="destroy(lifeEventToDelete)">
+          {{ $t('app.delete') }}
+        </a>
       </div>
     </sweet-modal>
   </div>

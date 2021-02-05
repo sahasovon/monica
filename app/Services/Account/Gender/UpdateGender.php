@@ -32,10 +32,11 @@ class UpdateGender extends BaseService
      * @param array $data
      * @return Gender
      */
-    public function execute(array $data) : Gender
+    public function execute(array $data): Gender
     {
         $this->validate($data);
 
+        /** @var Gender */
         $gender = Gender::where('account_id', $data['account_id'])
             ->findOrFail($data['gender_id']);
 
